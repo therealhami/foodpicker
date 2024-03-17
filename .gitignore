@@ -1,0 +1,8 @@
+
+###> symfony/asset-mapper ###
+/public/assets/
+/assets/vendor/
+.idea
+var
+vendor
+###< symfony/asset-mapper ###
