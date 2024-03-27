@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <h1 class="f-h1">Restaurants die in der Liste sind:</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Categories</th>
+            <th scope="col">Description</th>
+            <th scope="col">URL</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for restaurant in restaurants  %}
+        <tr>
+            <th scope="row">{{ restaurant.id }}</th>
+            <td>{{ restaurant.name }}</td>
+            <td>{{ restaurant.categories|join(',') }}</td>
+            <td>{{ restaurant.getShortDescription }}</td>
+            <td><a href="{{ restaurant.shopUrl }}" target="_blank">{{ restaurant.shopUrl }}</a></td>
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <br>
+    <h1 class="f-h1">Foodpicker Empfehlung des Augenblicks :</h1>
+    <br>
+
+    <div id="f-card" class="card" >
+        <img src="{{ asset('images/'~ restaurant.fileName) }}" class="card-img-top" alt="hakis image">
+        <div class="card-body">
+            <h5 class="card-title">{{ restaurant.name }}</h5>
+            <p class="card-text">{{ restaurant.description }}</p>
+
+        </div>
+    </div>
+    <br>
+
+
+    <a href="{{ path('index')}}" class="btn btn-secondary" style="display: block">new random</a>
+
+{% endblock %}
