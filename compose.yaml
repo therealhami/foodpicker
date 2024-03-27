@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  php:
+    build:
+      context: .
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - .:/var/www/foodpicker
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  ###> doctrine/doctrine-bundle ###
+  dbdata:
+  caddy_data:
+  caddy_config:
+###< doctrine/doctrine-bundle ###
