@@ -61,11 +61,9 @@ class Restaurants
         return $this->categories;
     }
 
-    public function setCategories(array $categories): static
+    public function setCategories(array $categories): void
     {
         $this->categories = $categories;
-
-        return $this;
     }
 
     public function getShopUrl(): ?string
@@ -119,7 +117,7 @@ class Restaurants
         return $this;
     }
 
-    public function getShortDescription()
+    public function getShortDescription(): string
     {
         return substr($this->description, 0, 40).'....';
     }

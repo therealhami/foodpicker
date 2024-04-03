@@ -24,6 +24,9 @@ nav {
     margin-top: 20px;
     display: block;
 }
+.f-container {
+    margin-top: 20px;
+}
 @media only screen and (max-width: 600px) {
     :root {
         margin: 20px;
