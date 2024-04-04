@@ -27,17 +27,18 @@ class RestaurantController extends AbstractController
     public function addRestaurant(Request $request, RestaurantsRepository $restaurantsRepository): Response
     {
         $restaurant = new Restaurants();
-        $restaurant->setCategories([]);
         $form = $this->createForm(RestaurantType::class, $restaurant)->add('submit', SubmitType::class);
 
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-            $restaurant = $form->getData();
+            $restaurant->setCategories(array_map(fn($categories) => $categories->getName(),$restaurant->getCategories()));
+            $restaurant->setFileName($restaurant->getName());
+            $restaurantsRepository->save($restaurant);
         }
 
         return $this->render('restaurant_add.html.twig', [
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 }

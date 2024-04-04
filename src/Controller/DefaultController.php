@@ -15,7 +15,7 @@ class DefaultController extends AbstractController
     {
         $restaurants = $restaurantsRepository->findAll();
 
-        $randomRestaurant = $restaurants[0];
+        $randomRestaurant = $restaurants[array_rand($restaurants)];
         return $this->render('index.html.twig', [
             'restaurant' => $randomRestaurant
         ]);
@@ -25,11 +25,5 @@ class DefaultController extends AbstractController
     public function orders(): RedirectResponse
     {
        return  $this->redirectToRoute('index');
-    }
-
-    #[Route('/restaurants', 'restaurants')]
-    public function restaurants(): RedirectResponse
-    {
-        return $this->redirectToRoute('index');
     }
 }
