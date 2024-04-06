@@ -10,6 +10,7 @@
             <th scope="col">Categories</th>
             <th scope="col">Description</th>
             <th scope="col">URL</th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
@@ -20,11 +21,13 @@
             <td>{{ restaurant.categories|join(',') }}</td>
             <td>{{ restaurant.getShortDescription }}</td>
             <td><a href="{{ restaurant.shopUrl }}" target="_blank">{{ restaurant.shopUrl }}</a></td>
+            <td><a class="btn btn-secondary" href="#" >Edit</a></td>
+            <td><a class="btn btn-danger" href="{{ path('restaurant_delete', {'id': restaurant.id} ) }}">Delete</a></td>
         </tr>
         {% endfor %}
 
         </tbody>
     </table>
 
-    <a class="btn btn-secondary" href="{{ path('restaurant_add') }}" title="Restaurant hinzufügen"> Restaurant hinzuf&uuml;gen</a>
+    <a class="btn btn-primary" href="{{ path('restaurant_add') }}" title="Restaurant hinzufügen"> Restaurant hinzuf&uuml;gen</a>
 {% endblock %}

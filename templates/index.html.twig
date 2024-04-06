@@ -4,8 +4,8 @@
     <h1 class="f-h1">Foodpicker Empfehlung des Augenblicks :</h1>
     <br>
 
-    <div id="f-card" class="card">
-        <img src="{{ asset('images/'~ restaurant.fileName) }}" class="card-img-top" alt="hakis image" height="450">
+    <div id="f-card" class="card f-container">
+        <img src="{{ asset('images/'~ restaurant.fileName) }}" class="card-img-top" alt="hakis image" height="380">
         <div class="card-body">
             <h5 class="card-title">{{ restaurant.name }}</h5>
             <p class="card-text">{{ restaurant.description }}</p>

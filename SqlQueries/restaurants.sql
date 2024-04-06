@@ -7,3 +7,4 @@ INSERT INTO categories (name) values ('FISH');
 INSERT INTO categories (name) values ('INDIAN');
 INSERT INTO categories (name) values ('PIDE');
 INSERT INTO categories (name) values ('CHICKEN');
+INSERT INTO categories (name) values ('SUSHI');

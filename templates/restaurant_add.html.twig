@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+ {% form_theme form 'bootstrap_5_layout.html.twig' %}
 
  <h1 class="f-h1">Restaurant hinzuf&uuml;gen</h1>
 
@@ -10,6 +11,7 @@
    <div class="form-group">
   {{ form_row(form.name) }}
   {{ form_row(form.categories) }}
+  {{ form_row(form.fileName) }}
   {{ form_row(form.shopUrl) }}
   {{ form_row(form.description) }}
   {{ form_row(form.submit) }}
@@ -19,4 +21,3 @@
 
  </div>
 {% endblock %}
-

@@ -1,6 +1,6 @@
 <?php
 
-use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\AbstractType;;
 
 class RestaurantType extends AbstractType
 {
@@ -15,6 +15,10 @@ class RestaurantType extends AbstractType
                 'expanded' => true
             ])
             ->add('shopUrl', \Symfony\Component\Form\Extension\Core\Type\TextType::class)
+            ->add('fileName', \Symfony\Component\Form\Extension\Core\Type\FileType::class, [
+                'label' => 'Image',
+
+            ])
             ->add('description', \Symfony\Component\Form\Extension\Core\Type\TextareaType::class)
             ;
     }
