@@ -1,32 +1,51 @@
 <?php
 
-use Symfony\Component\Form\AbstractType;;
+namespace App\Form\Type;
+
+use App\Entity\Restaurants;
+use App\Form\FileTransformer;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class RestaurantType extends AbstractType
 {
-    public function buildForm(\Symfony\Component\Form\FormBuilderInterface $builder, array $options): void
+
+    public function __construct(
+        private readonly FileTransformer $fileTransformer
+    )
+    {
+    }
+
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', \Symfony\Component\Form\Extension\Core\Type\TextType::class)
-            ->add('categories', \Symfony\Bridge\Doctrine\Form\Type\EntityType::class,[
+            ->add('name', TextType::class)
+            ->add('categories', EntityType::class, [
                 'class' => \App\Entity\Categories::class,
                 'choice_label' => 'name',
                 'multiple' => true,
                 'expanded' => true
             ])
-            ->add('shopUrl', \Symfony\Component\Form\Extension\Core\Type\TextType::class)
-            ->add('fileName', \Symfony\Component\Form\Extension\Core\Type\FileType::class, [
+            ->add('shopUrl', TextType::class)
+            ->add('fileName', FileType::class, [
                 'label' => 'Image',
 
             ])
-            ->add('description', \Symfony\Component\Form\Extension\Core\Type\TextareaType::class)
-            ;
+            ->add('description', TextareaType::class);
+
+       $builder->get('fileName')->addModelTransformer($this->fileTransformer);
     }
 
-    public function configureOptions(\Symfony\Component\OptionsResolver\OptionsResolver $resolver): void
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => \App\Entity\Restaurants::class
+            'data_class' => Restaurants::class
         ]);
     }
 }

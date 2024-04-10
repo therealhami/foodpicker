@@ -21,7 +21,7 @@
             <td>{{ restaurant.categories|join(',') }}</td>
             <td>{{ restaurant.getShortDescription }}</td>
             <td><a href="{{ restaurant.shopUrl }}" target="_blank">{{ restaurant.shopUrl }}</a></td>
-            <td><a class="btn btn-secondary" href="#" >Edit</a></td>
+            <td><a class="btn btn-secondary" href="{{ path('restaurant_edit', {'id': restaurant.id}) }}" >Edit</a></td>
             <td><a class="btn btn-danger" href="{{ path('restaurant_delete', {'id': restaurant.id} ) }}">Delete</a></td>
         </tr>
         {% endfor %}

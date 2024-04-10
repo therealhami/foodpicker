@@ -22,10 +22,6 @@ class Restaurants
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\File(
-        maxSize: '5M',
-        extensionsMessage: 'Please upload a valid JPEG',
-    )]
     private ?string $fileName = null;
 
     #[ORM\Column(type: Types::SIMPLE_ARRAY)]

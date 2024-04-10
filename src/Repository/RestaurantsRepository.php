@@ -26,7 +26,7 @@ class RestaurantsRepository extends ServiceEntityRepository
         $this->getEntityManager()->remove($restaurants);
         $this->getEntityManager()->flush();
     }
-    public function save(Restaurants $restaurants)
+    public function save(Restaurants $restaurants): void
     {
         $this->getEntityManager()->persist($restaurants);
         $this->getEntityManager()->flush();
