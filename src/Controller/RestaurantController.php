@@ -58,13 +58,13 @@ class RestaurantController extends AbstractController
     #[Route(path: '/restaurant/{id}', name: 'restaurant_delete', methods: ['GET', 'DELETE'])]
     public function restaurantDelete(Restaurants $restaurant, RestaurantsRepository $restaurantsRepository): RedirectResponse
     {
-        unlink($this->getParameter('kernel.project_dir').'/assets/images/'.$restaurant->getFileName());
+        unlink($this->getParameter('kernel.project_dir') . '/assets/images/' . $restaurant->getFileName());
         $restaurantsRepository->delete($restaurant);
         return $this->redirectToRoute('restaurants');
     }
 
     #[Route(path: '/restaurant/{id}/edit', name: 'restaurant_edit', methods: ['GET', 'POST'])]
-    public function restaurantEdit(Restaurants $restaurant, Request $request,RestaurantsRepository $restaurantsRepository, CategoriesRepository $categoriesRepository): Response
+    public function restaurantEdit(Restaurants $restaurant, Request $request, RestaurantsRepository $restaurantsRepository, CategoriesRepository $categoriesRepository): Response
     {
         $restaurant->setCategories($categoriesRepository->findBy(['name' => $restaurant->getCategories()]));
         $form = $this->createForm(RestaurantType::class, $restaurant)->add('submit', SubmitType::class);
@@ -78,7 +78,8 @@ class RestaurantController extends AbstractController
                 $this->getParameter('kernel.project_dir') . '/assets/images/',
                 $image->getClientOriginalName()
             );
-
+            
+            $restaurant->setFileName($image->getClientOriginalName());
             $restaurant->setCategories(array_map(fn($categories) => $categories->getName(), $restaurant->getCategories()));
             $restaurantsRepository->save($restaurant);
 

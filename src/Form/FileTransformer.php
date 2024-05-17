@@ -6,16 +6,16 @@ use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\HttpFoundation\File\File;
 
-class FileTransformer implements DataTransformerInterface
+readonly class FileTransformer implements DataTransformerInterface
 {
     public function __construct(
         #[Autowire('%kernel.project_dir%/assets/images/')]
-        private readonly string $filePath
+        private string $filePath
     )
     {
     }
 
-    public function transform(mixed $fileName)
+    public function transform(mixed $fileName): File|string
     {
         if(null === $fileName) {
             return '';

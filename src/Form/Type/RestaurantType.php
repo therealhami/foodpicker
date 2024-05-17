@@ -2,6 +2,7 @@
 
 namespace App\Form\Type;
 
+use App\Entity\Categories;
 use App\Entity\Restaurants;
 use App\Form\FileTransformer;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -19,15 +20,14 @@ class RestaurantType extends AbstractType
     public function __construct(
         private readonly FileTransformer $fileTransformer
     )
-    {
-    }
+    {}
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('name', TextType::class)
             ->add('categories', EntityType::class, [
-                'class' => \App\Entity\Categories::class,
+                'class' => Categories::class,
                 'choice_label' => 'name',
                 'multiple' => true,
                 'expanded' => true
