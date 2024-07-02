@@ -2,7 +2,9 @@ FROM dunglas/frankenphp
 
 RUN apt update \
     &&  curl -sL https://deb.nodesource.com/setup_20.x | bash - \
-    && apt install -y nodejs
+    && apt install -y nodejs \
+    && apt-get install -y libzip-dev \
+    && docker-php-ext-install zip
 
 RUN npm install -g yarn
 
